@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>مغامرة أبطال المقارنة - جمانة عنقاوي</title>
+<style>
+:root{
+  --ink:#17324d;--muted:#63758a;--bg:#f5f9ff;--card:#fff;--border:#d8e6f2;
+  --blue:#4285f4;--green:#34c759;--red:#d94a4a;--gold:#e7b400;--purple:#7658c7;
+  --shadow:0 10px 28px rgba(31,79,121,.12)
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:Arial,"Segoe UI",sans-serif;
+  background:linear-gradient(180deg,#f9fcff,#f1f7ff);color:var(--ink);
+  font-size:16px
+}
+button,input{font:inherit} button{cursor:pointer}
+.app{width:min(1180px,100%);height:100dvh;margin:auto;padding:10px;display:flex;flex-direction:column;overflow:hidden}
+.top-brand{height:54px;flex:0 0 54px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.flag{width:48px;height:30px;border-radius:5px;overflow:hidden;position:relative;box-shadow:0 2px 7px #0002;background:linear-gradient(to bottom,#111 0 33.33%,#fff 33.33% 66.66%,#279b52 66.66% 100%)}
+.flag:before{content:"";position:absolute;inset:0 auto 0 0;width:45%;background:#d43d3d;clip-path:polygon(0 0,100% 50%,0 100%)}
+.license{font-size:.78rem;color:var(--muted);text-align:left;line-height:1.5}
+.screen{display:none;min-height:0;flex:1}.screen.active{display:flex;flex-direction:column;min-height:0}
+.hero{height:100%;background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);padding:20px 26px;text-align:center;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+h1{font-size:clamp(1.9rem,4vw,3rem);margin:4px 0;color:#173f7b}.subtitle{font-size:1.05rem;color:var(--muted);margin-bottom:10px}.teacher-pill{display:inline-flex;align-self:center;gap:8px;padding:7px 13px;border-radius:999px;background:#edf8ef;color:#217c43;font-weight:700;margin-bottom:10px}
+.story{max-width:840px;margin:0 auto 12px;background:#fff8e7;border:1px solid #f2dda0;border-radius:17px;padding:10px 14px;line-height:1.65;text-align:right}
+.start-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:12px;max-width:900px;width:100%;margin:0 auto}.panel{background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;text-align:right}.panel h2{margin:0 0 6px;font-size:1.12rem}.rules{margin:0;padding-right:20px;line-height:1.7}.bloom{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.chip{background:#f0f5fb;border:1px solid #dbe7f3;border-radius:999px;padding:5px 9px;font-size:.82rem}
+label{font-weight:700;display:block;margin-bottom:7px}.name-input{width:100%;padding:11px 12px;border:2px solid #cfe1ef;border-radius:13px;outline:0}.name-input:focus{border-color:var(--blue)}.error{color:#b3261e;font-size:.85rem;min-height:1.2em;margin-top:4px}
+.primary,.secondary{border-radius:13px;padding:11px 16px;font-weight:700}.primary{border:0;color:#fff;background:linear-gradient(135deg,#2b7bc9,#3967ba);box-shadow:0 6px 15px #2878c833}.secondary{border:1px solid #cbdceb;background:#fff;color:var(--ink)}
+.hud{height:66px;flex:0 0 66px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:17px;padding:9px 12px;box-shadow:0 6px 18px #20527e12}.student{font-weight:700;white-space:nowrap}.progress-meta{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:4px}.progress{height:9px;background:#eaf1f7;border-radius:999px;overflow:hidden}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2f9e59,#53b96f);transition:.35s}.hud-right{display:flex;align-items:center;gap:7px}.stat{background:#f4f8fc;border-radius:11px;padding:6px 9px;font-weight:700;white-space:nowrap}.icon-btn{width:38px;height:38px;border-radius:11px;border:1px solid #d7e5ef;background:#fff;font-size:1.1rem}
+.game-card{flex:1;min-height:0;margin-top:8px;background:#fff;border:1px solid var(--border);border-radius:22px;padding:12px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}.level-head{height:34px;flex:0 0 34px;display:flex;align-items:center;justify-content:space-between;gap:12px}.level-title{font-size:1.08rem;font-weight:800}.level-badge{padding:5px 10px;border-radius:999px;background:#eef5ff;color:#285a98;font-size:.8rem;font-weight:700}
+.question-area{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}.prompt{font-size:clamp(1.05rem,2vw,1.38rem);font-weight:700;margin:2px auto 6px;max-width:850px;line-height:1.5;flex:0 0 auto}.context{max-width:850px;background:#fff9e9;border:1px solid #efdca2;border-radius:15px;padding:7px 12px;margin:0 auto 5px;line-height:1.45;text-align:right;font-size:.92rem;flex:0 0 auto}.hidden{display:none!important}
+.numbers{direction:ltr;display:flex;align-items:center;justify-content:center;gap:18px;margin:3px 0 7px;flex:0 0 auto}.num{min-width:120px;padding:10px 16px;border-radius:18px;background:#f3f9ff;border:2px solid #cfe4f5;font-family:Arial,sans-serif;font-size:clamp(2.8rem,6.5vw,4.4rem);font-weight:700;color:#173f7b;line-height:1}.circle-slot{width:72px;height:72px;border:3px dashed #a8bad0;border-radius:50%;display:grid;place-items:center;color:#8ba0b5;font-family:Arial,sans-serif;font-size:2rem}
+.choice-row{display:flex;direction:ltr;gap:18px;justify-content:center;margin-top:2px;flex:0 0 auto}.choice{min-width:108px;height:70px;border:2.5px solid #222;border-radius:19px;font-family:Arial,sans-serif;font-size:2.5rem;font-weight:700;color:#fff;transition:.15s;box-shadow:0 2px 0 #0002;line-height:1}.choice:hover{transform:translateY(-2px)}.choice.symbol-gt{background:var(--blue)}.choice.symbol-eq{background:var(--gold)}.choice.symbol-lt{background:var(--green)}.choice.correct{background:#188b49!important;border-color:#126a37!important}.choice.wrong{background:#d94a4a!important;border-color:#a62c2c!important}.choice .word{display:block;font-size:.64rem;font-weight:700;margin-top:1px;color:#fff}
+.visual-row{display:flex;direction:ltr;gap:22px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin:0 0 4px;flex:0 0 auto}.base10-wrap{background:#fbfdff;border:1px solid #e1ebf3;border-radius:14px;padding:4px 7px}.base10{display:flex;gap:4px;align-items:flex-end;direction:ltr;min-height:62px}.ten{display:grid;grid-template-rows:repeat(10,4px);gap:1px}.ten i,.one{display:block;width:13px;height:4px;background:#4cae64;border:1px solid #258b3f}.ones{display:grid;grid-template-columns:repeat(5,13px);gap:3px;align-content:end}.one{height:13px}.visual-label{font-size:.82rem;color:#50667a;margin-top:3px;font-weight:700;font-family:Arial,sans-serif}
+.line-box{width:min(1080px,100%);height:225px;max-height:34vh;margin:-2px auto 0;flex:0 0 225px}.line-svg{width:100%;height:100%;display:block;overflow:visible}.line-svg text{font-family:Arial,sans-serif;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.feedback{height:72px;flex:0 0 72px;margin-top:5px;padding:8px 13px;border-radius:15px;border:1px solid #dce8f1;background:#f8fbfe;text-align:right;line-height:1.45;font-size:.92rem;overflow:hidden}.feedback.good{background:#edf9f1;border-color:#b9e4c6}.feedback.bad{background:#fff7e9;border-color:#f2d69a}.feedback strong{display:block;margin-bottom:1px}.remedial-tag{display:inline-block;margin-right:7px;padding:3px 8px;border-radius:999px;background:#fff0d9;color:#8a5700;font-size:.76rem;font-weight:800}.therapy-note{font-size:.78rem;color:#725718;margin-right:6px}.worksheet-status{font-size:.78rem;color:#247a44;margin-top:6px;font-weight:700;min-height:1em}.next-wrap{height:42px;flex:0 0 42px;text-align:center;padding-top:4px}.next-wrap .primary{padding:8px 15px}
+.badge-pop{position:fixed;inset:0;background:#12263a7a;display:none;align-items:center;justify-content:center;z-index:10;padding:18px}.badge-pop.show{display:flex}.badge-card{width:min(460px,95%);background:#fff;border-radius:24px;padding:24px;text-align:center;box-shadow:0 25px 70px #0003}.big-badge{font-size:4.6rem}
+.certificate{height:100%;background:#fff;border:8px double #d9b257;border-radius:22px;padding:16px 22px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;overflow:hidden}.certificate h2{font-size:2.15rem;margin:4px 0;color:#173b73}.cert-name{font-size:1.85rem;color:#2b7bc9;font-weight:800;margin:8px 0}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:12px 0}.summary-card{background:#f5f9fc;border-radius:14px;padding:9px}.summary-card b{display:block;font-family:Arial,sans-serif;font-size:1.35rem}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}.footer-note{text-align:center;color:var(--muted);font-size:.72rem;flex:0 0 18px;height:18px;line-height:18px}
+.numeric,.stat,.progress-meta,.cert-name{font-family:Arial,sans-serif}
+@media(max-width:760px){.start-grid{grid-template-columns:1fr}.hud{grid-template-columns:1fr;height:auto;flex-basis:auto}.hud-right{justify-content:center}.student{text-align:center}.game-card{padding:9px}.num{min-width:90px}.choice{min-width:90px}.line-box{height:190px;flex-basis:190px}.top-brand{height:48px;flex-basis:48px}.license{max-width:190px}.summary-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-height:720px){.top-brand{height:44px;flex-basis:44px}.hud{height:56px;flex-basis:56px}.game-card{margin-top:5px;padding:7px 12px}.level-head{height:28px;flex-basis:28px}.prompt{font-size:1rem}.num{font-size:2.7rem;padding:7px 12px}.circle-slot{width:60px;height:60px}.choice{height:58px;font-size:2.1rem}.feedback{height:59px;flex-basis:59px;font-size:.84rem}.next-wrap{height:36px;flex-basis:36px}.line-box{height:170px;flex-basis:170px}.line-svg text{stroke-width:2px}.visual-row{transform:scale(.9);transform-origin:center;margin:-5px 0}.footer-note{display:none}}
+@media print{body{overflow:visible;background:#fff}.top-brand,.hud,.actions,.footer-note,#startScreen,#gameScreen{display:none!important}#endScreen{display:flex!important}.app{height:auto;padding:0}.certificate{min-height:95vh;box-shadow:none;border:8px double #9a7a31}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top-brand">
+    <div class="brand"><div class="flag" aria-hidden="true"></div><div><div>رياضيات الصف الثاني الأساسي</div><small style="color:var(--muted)">التعلّم باللعب والتدريب المتكيف</small></div></div>
+    <div class="license">إعداد: جمانة عنقاوي<br>CC BY-NC-ND • بعض الحقوق محفوظة</div>
+  </div>
+
+  <section id="startScreen" class="screen active">
+    <div class="hero">
+      <div style="font-size:3rem">🔢 ⭐ 🧠</div>
+      <h1>مغامرة أبطال المقارنة</h1>
+      <div class="subtitle">المقارنة بين عددين ضمن ٩٩</div>
+      <div class="teacher-pill">👩‍🏫 المعلّمة: جمانة عنقاوي</div>
+      <div class="story"><strong>📖 المهمة:</strong> ساعد بطل الأعداد على استعادة أربع نجوم. ستبدأ بالمقارنة الواضحة، ثم تنتقل إلى أسئلة العشرات والآحاد، وخط الأعداد، ثم مواقف حياتية. إذا أخطأت، ستعطيك اللعبة تلميحًا وتضيف تدريبًا مناسبًا لنوع الخطأ.</div>
+      <div class="start-grid">
+        <div class="panel"><h2>🎯 كيف ألعب؟</h2><ol class="rules"><li>قارن <strong>العشرات أولًا</strong>.</li><li>إذا تساوت العشرات، قارن الآحاد.</li><li>اختر: <strong>&gt;</strong> أو <strong>=</strong> أو <strong>&lt;</strong>.</li><li>بعد الإجابة الصحيحة تنتقل اللعبة تلقائيًا بعد ٣ ثوانٍ.</li><li>تتغير الأعداد في كل مرة، وتتكيّف الأسئلة مع أخطائك.</li></ol><div class="bloom"><span class="chip">تذكّر</span><span class="chip">فهم</span><span class="chip">تطبيق</span><span class="chip">تحليل</span></div></div>
+        <div class="panel"><label for="studentName">✍️ اسم الطالب/الطالبة</label><input id="studentName" class="name-input" maxlength="30" placeholder="الاسم هنا..." autocomplete="off"><div id="nameError" class="error"></div><button id="startBtn" class="primary" style="width:100%">ابدأ المغامرة 🚀</button><div style="margin-top:10px;color:var(--muted);font-size:.84rem;line-height:1.6">٤ مستويات • ٢٠ سؤالًا أساسيًا + أسئلة علاجية إضافية حسب الخطأ • شهادة إنجاز • تقرير للمعلم</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen">
+    <div class="hud">
+      <div id="hudStudent" class="student">👤 —</div>
+      <div><div class="progress-meta"><span id="progressText">السؤال ١ من ٢٠</span><span id="levelText">المستوى السهل</span></div><div class="progress"><span id="progressBar"></span></div></div>
+      <div class="hud-right"><div id="scoreBox" class="stat">🏆 ٠</div><div id="starsBox" class="stat">⭐ ٠</div><button id="muteBtn" class="icon-btn" title="كتم/تشغيل الصوت">🔊</button></div>
+    </div>
+    <div class="game-card">
+      <div class="level-head"><div id="levelTitle" class="level-title">🌱 المستوى السهل</div><div id="bloomBadge" class="level-badge">بلوم: تذكّر وفهم</div></div>
+      <div class="question-area"><div id="questionPrompt" class="prompt"></div><div id="contextBox" class="context hidden"></div><div id="visualBox"></div><div id="numbersBox" class="numbers"></div><div id="choicesBox" class="choice-row"></div></div>
+      <div id="feedback" class="feedback" aria-live="polite"><strong>جاهز؟</strong> قارن العشرات أولًا.</div>
+      <div class="next-wrap"><button id="nextBtn" class="primary hidden">التالي الآن ←</button></div>
+    </div>
+  </section>
+
+  <section id="endScreen" class="screen">
+    <div class="certificate">
+      <div style="font-size:3.2rem">🏅🎉</div><h2>شهادة إنجاز</h2><p style="margin:4px">تُمنح هذه الشهادة إلى</p><div id="certName" class="cert-name"></div><p style="margin:4px">لإتمام لعبة <strong>المقارنة بين عددين ضمن ٩٩</strong> وإظهار تقدّم في مهارة المقارنة.</p>
+      <div class="summary-grid"><div class="summary-card"><span>النقاط</span><b id="finalScore">٠</b></div><div class="summary-card"><span>النجوم</span><b id="finalStars">٠ ⭐</b></div><div class="summary-card"><span>من أول محاولة</span><b id="finalCorrect">٠/٢٠</b></div><div class="summary-card"><span>التقدير</span><b id="finalLevel">ممتاز</b></div></div>
+      <div style="font-weight:700;color:#247a44">أحسنت! واصل التعلّم والتدرّب 🌟</div><div style="margin-top:10px">المعلّمة: <strong>جمانة عنقاوي</strong></div><div style="font-size:.8rem;color:var(--muted);margin-top:4px">CC BY-NC-ND • بعض الحقوق محفوظة</div>
+      <div class="actions"><button id="printBtn" class="primary">🖨️ طباعة / حفظ الشهادة PDF</button><button id="downloadBtn" class="secondary">📊 تصدير تقرير المعلم CSV</button><button id="worksheetBtn" class="secondary">🩹 إنشاء ورقة عمل علاجية مخصصة</button><button id="restartBtn" class="secondary">🔄 العب من جديد</button></div><div id="worksheetStatus" class="worksheet-status"></div>
+    </div>
+  </section>
+  <div class="footer-note">تدريب على القيمة المكانية، الأزواج المتقاربة، انعكاس ترتيب الرقمين، والأزواج التي قد تدفع الطفل لمقارنة الآحاد أولًا.</div>
+</div>
+
+<div id="badgePop" class="badge-pop" role="dialog" aria-modal="true"><div class="badge-card"><div id="badgeIcon" class="big-badge">⭐</div><h2 id="badgeTitle">أحسنت!</h2><p id="badgeText"></p><button id="badgeClose" class="primary">تابع اللعب</button></div></div>
+
+<script>
+const AR=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+const toAr=n=>String(n).replace(/\d/g,d=>AR[+d]);
+const relation=(a,b)=>a>b?'>':a<b?'<':'=';
+const rand=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+const pick=a=>a[rand(0,a.length-1)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const levels=[
+ {name:'🌱 المستوى السهل',short:'السهل',bloom:'بلوم: تذكّر وفهم',badge:'🌟',badgeName:'نجمة البداية'},
+ {name:'🚀 المستوى المتوسط',short:'المتوسط',bloom:'بلوم: فهم وتطبيق',badge:'🚀',badgeName:'شارة المنطلق'},
+ {name:'🧭 المستوى المتقدم',short:'المتقدم',bloom:'بلوم: تطبيق وتحليل',badge:'🧭',badgeName:'شارة المستكشف'},
+ {name:'🏆 مستوى التحدي',short:'التحدي',bloom:'بلوم: تحليل وتطبيق',badge:'🏆',badgeName:'وسام بطل المقارنة'}
+];
+const typeNames={clearTens:'تمييز العشرات',sameTens:'تساوي العشرات',equal:'التساوي',equality:'فهم التساوي',onesTrap:'مقارنة الآحاد قبل العشرات',reversal:'انعكاس الرقمين',close:'أعداد متقاربة',zero:'وجود الصفر',symbolDirection:'اتجاه رمز المقارنة'};
+const focusNames={onesTrap:'البدء بالآحاد قبل العشرات',sameTens:'المقارنة عندما تتساوى العشرات',reversal:'تمييز القيمة المكانية عند انعكاس الرقمين',symbolDirection:'اتجاه رمز أكبر من/أصغر من',equality:'تمييز التساوي من عدمه',close:'مقارنة الأعداد المتقاربة',zero:'فهم الصفر في الآحاد أو العشرات',clearTens:'تمييز العشرات أولًا'};
+let questions=[],used=new Set(),idx=0,score=0,stars=0,correctCount=0,attempts=0,solved=false,muted=false,student='',audioCtx=null,autoTimer=null,countTimer=null;
+let misconceptions={onesTrap:0,sameTens:0,reversal:0,symbolDirection:0,equality:0,close:0,zero:0,clearTens:0};
+let remediationStats={};
+let logs=[];
+const $=id=>document.getElementById(id);
+function showScreen(id){['startScreen','gameScreen','endScreen'].forEach(s=>$(s).classList.toggle('active',s===id))}
+function tone(freq=520,dur=.12,type='sine'){if(muted)return;try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=.05;o.connect(g);g.connect(audioCtx.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.stop(audioCtx.currentTime+dur)}catch(e){}}
+function successSound(){tone(620,.1);setTimeout(()=>tone(790,.14),90)} function wrongSound(){tone(220,.16,'triangle')}
+function uniquePair(a,b){const k=a+'-'+b;if(used.has(k))return false;used.add(k);return true}
+function mk(a,b,type,level,extra={}){return {a,b,type,level,...extra}}
+function generatePair(type){
+  for(let tries=0;tries<300;tries++){
+    let a,b;
+    if(type==='equal'){a=rand(10,99);b=a}
+    else if(type==='sameTens'){const t=rand(1,9);let u1=rand(0,9),u2=rand(0,9);if(u1===u2)continue;a=t*10+u1;b=t*10+u2}
+    else if(type==='clearTens'){let t1=rand(1,8),t2=rand(t1+1,9),u1=rand(0,7),u2=rand(u1+1,9);a=t1*10+u1;b=t2*10+u2;if(Math.random()<.5)[a,b]=[b,a]}
+    else if(type==='onesTrap'){let t1=rand(1,8),t2=rand(t1+1,9),u1=rand(6,9),u2=rand(0,3);a=t1*10+u1;b=t2*10+u2;if(Math.random()<.5)[a,b]=[b,a]}
+    else if(type==='reversal'){let x=rand(1,9),y=rand(1,9);if(x===y)continue;a=x*10+y;b=y*10+x;if(Math.random()<.5)[a,b]=[b,a]}
+    else if(type==='close'){a=rand(10,96);b=a+rand(1,3);if(Math.random()<.5)[a,b]=[b,a]}
+    else if(type==='zero'){const mode=rand(0,2);if(mode===0){a=rand(2,9)*10;b=a+rand(1,9)}else if(mode===1){a=rand(2,9)*10;b=a-rand(1,3)}else{a=rand(2,8)*10;b=(Math.floor(a/10)+1)*10-rand(1,3)}if(a<10||b<10||a>99||b>99)continue;if(Math.random()<.5)[a,b]=[b,a]}
+    else if(type==='equality'){if(Math.random()<.45){a=rand(10,99);b=a}else{const t=rand(1,9);let u1=rand(0,9),u2=rand(0,9);if(u1===u2)continue;a=t*10+u1;b=t*10+u2;if(Math.random()<.5)[a,b]=[b,a]}}
+    else if(type==='symbolDirection'){let t1=rand(1,8),t2=rand(t1+1,9);a=t1*10+rand(0,9);b=t2*10+rand(0,9);if(Math.random()<.5)[a,b]=[b,a]}
+    else continue;
+    if(uniquePair(a,b))return [a,b]
+  }
+  return [27,18]
+}
+function questionPrompt(type,level){
+  const map={clearTens:'قارن العشرات أولًا، ثم اختر الرمز المناسب.',sameTens:'العشرات متساوية. ما الذي يجب مقارنته الآن؟',equal:'انظر إلى العشرات والآحاد: ما العلاقة بين العددين؟',equality:'هل العددان متساويان فعلًا؟ افحص العشرات والآحاد.',onesTrap:'انتبه: الآحاد قد تعطي انطباعًا خاطئًا. ابدأ بالعشرات.',reversal:'الرقمان نفسهما لكن مكانهما مختلف. قارن القيمة المكانية.',close:'العددان متقاربان جدًا. قارن بدقة.',zero:'انتبه لمكان الصفر وقيمة كل منزلة.',symbolDirection:'حدّد العدد الأكبر أولًا، ثم وجّه فتحة الرمز نحوه.'};
+  return map[type]||'اختر الرمز الصحيح.'
+}
+function makeQuestion(type,level,opts={}){const [a,b]=generatePair(type);const q=mk(a,b,type,level,{prompt:questionPrompt(type,level),remedial:!!opts.remedial,focus:opts.focus||type,treatmentStep:opts.treatmentStep||0});if(level===0||opts.remedial)q.visual=true;if(type==='close'&&opts.remedial)q.line=true;if(level===2&&!opts.remedial)q.line=true;if(level===3&&!opts.remedial){q.context=contextFor(a,b,type);q.prompt='اقرأ الموقف، ثم اختر الرمز الصحيح بين العددين.'}if(opts.remedial)q.prompt='تدريب علاجي: '+questionPrompt(type,level);return q}
+function contextFor(a,b,type){const templates=[`في ركن القراءة يوجد ${toAr(a)} كتابًا في الرف الأول و${toAr(b)} كتابًا في الرف الثاني.`,`جمع طالبان لإعادة التدوير ${toAr(a)} ورقة و${toAr(b)} ورقة.`,`شارك في النشاط مجموعتان: الأولى ${toAr(a)} طالبًا والثانية ${toAr(b)} طالبًا.`,`في مسابقة الصف حصل فريقان على ${toAr(a)} نقطة و${toAr(b)} نقطة.`];return pick(templates)}
+function generateGame(){used=new Set();const plans=[['clearTens','sameTens','equal','reversal','onesTrap'],['sameTens','onesTrap','zero','clearTens','equal'],['close','onesTrap','reversal','sameTens','close'],['onesTrap','reversal','close','zero','equal']];questions=[];plans.forEach((types,lvl)=>types.forEach(t=>questions.push(makeQuestion(t,lvl))));return questions}
+function base10HTML(n){const tens=Math.floor(n/10),ones=n%10;let t='',o='';for(let i=0;i<tens;i++)t+='<span class="ten">'+Array.from({length:10},()=>'<i></i>').join('')+'</span>';for(let i=0;i<ones;i++)o+='<span class="one"></span>';return `<div class="base10-wrap"><div class="base10">${t}<span class="ones">${o}</span></div><div class="visual-label">العشرات: ${toAr(tens)} | الآحاد: ${toAr(ones)}</div></div>`}
+function numberLineHTML(a,b){let min=Math.floor((Math.min(a,b)-5)/10)*10,min2=Math.max(0,min);let max=Math.ceil((Math.max(a,b)+5)/10)*10;max=Math.min(100,Math.max(max,min2+20));const x=n=>75+(n-min2)/(max-min2)*750;let ticks='';for(let n=min2;n<=max;n+=5){const xx=x(n),major=n%10===0;ticks+=`<line x1="${xx}" y1="112" x2="${xx}" y2="${major?148:137}" stroke="#5f55a7" stroke-width="${major?4:2.5}"/>${major?`<text x="${xx}" y="184" text-anchor="middle" font-size="29" fill="#273d55">${toAr(n)}</text>`:''}`}
+  return `<div class="line-box"><svg class="line-svg" viewBox="0 0 900 220" role="img" aria-label="خط أعداد"><text x="760" y="30" font-size="24" fill="#2f7d46">الأعداد تكبر ←</text><line x1="60" y1="112" x2="840" y2="112" stroke="#34a45a" stroke-width="8" stroke-linecap="round"/><polygon points="855,112 830,96 830,128" fill="#34a45a"/>${ticks}<circle cx="${x(a)}" cy="66" r="27" fill="#4285f4"/><text x="${x(a)}" y="76" text-anchor="middle" font-size="31" fill="#fff">${toAr(a)}</text><circle cx="${x(b)}" cy="66" r="27" fill="#d94a4a"/><text x="${x(b)}" y="76" text-anchor="middle" font-size="31" fill="#fff">${toAr(b)}</text></svg></div>`}
+function labelsVisible(){return questions[idx].level===0 || questions[idx].remedial}
+function renderQuestion(){clearTimers();const q=questions[idx],lv=levels[q.level];attempts=0;solved=false;$('levelTitle').textContent=q.remedial?'🩹 تدريب علاجي: '+(focusNames[q.focus]||typeNames[q.type]):lv.name;$('bloomBadge').textContent=q.remedial?'علاج موجه وتكرار هادف':lv.bloom;$('levelText').textContent='المستوى '+lv.short;$('progressText').textContent=`السؤال ${toAr(idx+1)} من ${toAr(questions.length)}`;$('progressBar').style.width=(idx/questions.length*100)+'%';$('questionPrompt').textContent=q.prompt;$('contextBox').classList.toggle('hidden',!q.context);$('contextBox').textContent=q.context||'';$('visualBox').innerHTML=q.line?numberLineHTML(q.a,q.b):(q.visual?`<div class="visual-row">${base10HTML(q.a)}${base10HTML(q.b)}</div>`:'');$('numbersBox').innerHTML=`<div class="num">${toAr(q.a)}</div><div class="circle-slot">؟</div><div class="num">${toAr(q.b)}</div>`;const lbl=labelsVisible();const symbols=['>','=','<'];$('choicesBox').innerHTML=symbols.map(s=>`<button class="choice ${s==='>'?'symbol-gt':s==='='?'symbol-eq':'symbol-lt'}" data-symbol="${s}">${s}${lbl?`<span class="word">${s==='>'?'أكبر من':s==='<'?'أصغر من':'يساوي'}</span>`:''}</button>`).join('');document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.symbol,b)));$('feedback').className='feedback';$('feedback').innerHTML=q.remedial?`<strong>هذا سؤال علاجي مخصص لك 🩹</strong><span class="therapy-note">نكرر المهارة التي احتاجت دعمًا حتى تثبت لديك.</span>`:'<strong>فكّر بهدوء.</strong>ابدأ بالعشرات، وإذا تساوت فانتقل إلى الآحاد.';$('nextBtn').classList.add('hidden');updateHud()}
+function updateHud(){$('scoreBox').textContent='🏆 '+toAr(score);$('starsBox').textContent='⭐ '+toAr(stars)}
+function recalcStars(){stars=score>=185?4:score>=135?3:score>=85?2:score>=35?1:0}
+function unitRelation(a,b){return relation(a%10,b%10)}
+function ensureRemediationStat(focus){if(!remediationStats[focus])remediationStats[focus]={errors:0,extra:0,firstTryCorrect:0,consecutive:0};return remediationStats[focus]}
+function diagnose(q,chosen){
+  const ans=relation(q.a,q.b);
+  let focus=q.type;
+  if(q.type==='onesTrap'&&unitRelation(q.a,q.b)===chosen) focus='onesTrap';
+  else if(q.type==='reversal') focus='reversal';
+  else if(q.type==='sameTens') focus='sameTens';
+  else if(q.type==='zero') focus='zero';
+  else if(q.type==='close') focus='close';
+  else if(q.type==='equal'||q.type==='equality'||chosen==='=') focus='equality';
+  else if((ans==='>'&&chosen==='<')||(ans==='<'&&chosen==='>')) focus='symbolDirection';
+  else focus='clearTens';
+  misconceptions[focus]=(misconceptions[focus]||0)+1;
+  ensureRemediationStat(focus).errors++;
+  return focus;
+}
+function adaptiveHint(q,focus){
+  if(focus==='onesTrap')return 'غطِّ الآحاد بعينيك للحظة. قارن رقم العشرات أولًا، ثم ارجع للآحاد فقط إذا تساوت العشرات.';
+  if(focus==='reversal')return 'سمِّ كل منزلة: أي رقم في العشرات؟ وأي رقم في الآحاد؟ لا يكفي أن يكون الرقمان نفسيهما.';
+  if(focus==='sameTens')return 'العشرات متساوية؛ ثبّت العشرات ثم قارن الآحاد فقط.';
+  if(focus==='close')return 'العددان متقاربان. حدّد أول منزلة مختلفة، ويمكنك الاستعانة بخط الأعداد.';
+  if(focus==='zero')return 'الصفر له مكان وقيمة: ٤٠ يعني ٤ عشرات و٠ آحاد. لا تتجاهل الصفر.';
+  if(focus==='equality')return 'نستخدم = فقط عندما تتساوى العشرات والآحاد معًا.';
+  if(focus==='symbolDirection')return 'حدّد العدد الأكبر أولًا، ثم اجعل فتحة الرمز الواسعة باتجاهه.';
+  return 'قارن رقم العشرات أولًا. العدد الذي لديه عشرات أكثر هو الأكبر.';
+}
+function remedialTypeForFocus(focus){return focus==='equality'?'equality':focus==='symbolDirection'?'symbolDirection':focus}
+function scheduleRemediation(focus,level,count=3){
+  const st=ensureRemediationStat(focus);
+  const remaining=Math.max(0,8-st.extra);
+  const n=Math.min(count,remaining);
+  if(n<=0)return;
+  const insert=[];
+  for(let i=0;i<n;i++){
+    const type=remedialTypeForFocus(focus);
+    insert.push(makeQuestion(type,Math.min(level,2),{remedial:true,focus,treatmentStep:st.extra+i+1}));
+  }
+  questions.splice(idx+1,0,...insert);
+  st.extra+=n;
+}
+function updateRemediationMastery(q,firstTry){
+  if(!q.remedial)return;
+  const st=ensureRemediationStat(q.focus);
+  if(firstTry){st.firstTryCorrect++;st.consecutive++;}
+  else st.consecutive=0;
+}
+function explanation(q){const ans=relation(q.a,q.b),ta=Math.floor(q.a/10),tb=Math.floor(q.b/10),oa=q.a%10,ob=q.b%10;if(ans==='=')return `العشرات متساوية والآحاد متساوية، لذلك ${toAr(q.a)} = ${toAr(q.b)}.`;if(ta!==tb)return `العشرات هي الحاسمة: ${toAr(ta)} و${toAr(tb)}، لذلك ${toAr(q.a)} ${ans} ${toAr(q.b)}.`;return `العشرات متساوية، فقارنّا الآحاد: ${toAr(oa)} و${toAr(ob)}، لذلك ${toAr(q.a)} ${ans} ${toAr(q.b)}.`}
+function answer(symbol,btn){
+  if(solved)return;
+  attempts++;
+  const q=questions[idx],ans=relation(q.a,q.b);
+  let log=logs[idx];
+  if(!log){log={index:idx+1,level:q.level+1,type:q.type,focus:q.focus||q.type,a:q.a,b:q.b,correct:ans,attempts:0,wrong:[],firstTry:false,remedial:q.remedial?'نعم':'لا',remediationAdded:0};logs[idx]=log}
+  log.attempts=attempts;
+  document.querySelectorAll('.choice').forEach(x=>x.classList.remove('wrong'));
+  if(symbol===ans){
+    solved=true;correctCount++;log.firstTry=attempts===1;updateRemediationMastery(q,log.firstTry);
+    btn.classList.add('correct');document.querySelectorAll('.choice').forEach(x=>x.disabled=true);
+    const gained=attempts===1?10:5;score+=gained;recalcStars();updateHud();successSound();
+    const therapy=q.remedial?` <span class="remedial-tag">تدريب علاجي ${toAr(q.treatmentStep||1)}</span>`:'';
+    $('feedback').className='feedback good';
+    $('feedback').innerHTML=`<strong>أحسنت! +${toAr(gained)} نقاط${therapy}</strong>${explanation(q)} <span id="autoMsg">الانتقال تلقائيًا بعد ٣ ثوانٍ.</span>`;
+    $('nextBtn').classList.remove('hidden');startAutoNext();
+  }else{
+    btn.classList.add('wrong');wrongSound();log.wrong.push(symbol);
+    const focus=diagnose(q,symbol);log.focus=focus;
+    if(!log.remediationAdded){
+      const amount=q.remedial?2:3;
+      scheduleRemediation(focus,q.level,amount);log.remediationAdded=amount;
+    }
+    $('feedback').className='feedback bad';
+    $('feedback').innerHTML=`<strong>محاولة جيدة، سنعالج هذه النقطة معًا 💡</strong>${adaptiveHint(q,focus)} <span class="therapy-note">أضفت لك ${toAr(log.remediationAdded)} أسئلة علاجية مشابهة بعد هذا السؤال.</span>`;
+  }
+}
+function startAutoNext(){clearTimers();let left=3;$('nextBtn').textContent='التالي الآن ←';const msg=()=>{const el=$('autoMsg');if(el)el.textContent=`الانتقال تلقائيًا بعد ${toAr(left)} ثوانٍ.`};msg();countTimer=setInterval(()=>{left--;if(left>0)msg()},1000);autoTimer=setTimeout(()=>nextQuestion(),3000)}
+function clearTimers(){if(autoTimer)clearTimeout(autoTimer);if(countTimer)clearInterval(countTimer);autoTimer=countTimer=null}
+function showBadge(levelIndex,after){const lv=levels[levelIndex];$('badgeIcon').textContent=lv.badge;$('badgeTitle').textContent=lv.badgeName;$('badgeText').textContent=`أنهيت ${lv.name.replace(/[^\u0600-\u06FF\s]/g,'').trim()} بنجاح. تابع إلى المرحلة التالية!`;$('badgePop').classList.add('show');$('badgeClose').onclick=()=>{$('badgePop').classList.remove('show');after()}}
+function nextQuestion(){if(!solved)return;clearTimers();const finishedLevel=questions[idx].level;idx++;if(idx>=questions.length){finishGame();return}if(!questions[idx].remedial&&questions[idx].level!==finishedLevel)showBadge(finishedLevel,renderQuestion);else renderQuestion()}
+function finishGame(){showBadge(3,()=>{showScreen('endScreen');$('certName').textContent=student;$('finalScore').textContent=toAr(score);$('finalStars').textContent=toAr(stars)+' ⭐';const answered=logs.filter(Boolean);const firstTry=answered.filter(x=>x.firstTry).length;$('finalCorrect').textContent=`${toAr(firstTry)}/${toAr(answered.length)}`;const pct=answered.length?firstTry/answered.length:0;$('finalLevel').textContent=pct>=.9?'ممتاز':pct>=.75?'جيد جدًا':pct>=.6?'جيد':'واصل التدريب';$('worksheetStatus').textContent='يمكن للمعلم الآن تصدير التقرير أو إنشاء ورقة علاجية مبنية على أخطاء هذا الطالب.'})}
+function resetGame(){idx=0;score=0;stars=0;correctCount=0;attempts=0;solved=false;misconceptions={onesTrap:0,sameTens:0,reversal:0,symbolDirection:0,equality:0,close:0,zero:0,clearTens:0};remediationStats={};logs=[];generateGame();updateHud();$('worksheetStatus').textContent=''}
+$('startBtn').addEventListener('click',()=>{const name=$('studentName').value.trim();if(!name){$('nameError').textContent='اكتب اسم الطالب/الطالبة أولًا.';return}$('nameError').textContent='';student=name;$('hudStudent').textContent='👤 '+student;try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();tone(520,.08)}catch(e){}resetGame();showScreen('gameScreen');renderQuestion()});
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')$('startBtn').click()});$('nextBtn').addEventListener('click',nextQuestion);$('muteBtn').addEventListener('click',()=>{muted=!muted;$('muteBtn').textContent=muted?'🔇':'🔊'});$('printBtn').addEventListener('click',()=>window.print());
+$('downloadBtn').addEventListener('click',()=>{
+  const headers=['الطالب','المعلمة','النقاط','النجوم','صحيح من أول محاولة','إجمالي الأسئلة المجابة','إجمالي الأسئلة العلاجية','البدء بالآحاد','تساوي العشرات','انعكاس الرقمين','عكس اتجاه الرمز','التساوي','الأعداد المتقاربة','الصفر','تمييز العشرات'];
+  const answered=logs.filter(Boolean),firstTryTotal=answered.filter(x=>x.firstTry).length,remedialTotal=answered.filter(x=>x.remedial==='نعم').length;
+  const summary=[student,'جمانة عنقاوي',score,stars,firstTryTotal,answered.length,remedialTotal,misconceptions.onesTrap,misconceptions.sameTens,misconceptions.reversal,misconceptions.symbolDirection,misconceptions.equality,misconceptions.close,misconceptions.zero,misconceptions.clearTens];
+  let rows=[headers,summary,[],['خطة علاج مقترحة','عدد الأخطاء','عدد الأسئلة العلاجية المولدة']];
+  Object.keys(focusNames).sort((a,b)=>(misconceptions[b]||0)-(misconceptions[a]||0)).filter(f=>misconceptions[f]>0).forEach(f=>rows.push([focusNames[f],misconceptions[f],(remediationStats[f]&&remediationStats[f].extra)||0]));
+  rows.push([],['ملخص حسب المستوى','صحيح من أول مرة','عدد أسئلة المستوى']);
+  for(let lv=1;lv<=4;lv++){const ls=answered.filter(x=>x.level===lv);rows.push(['المستوى '+lv,ls.filter(x=>x.firstTry).length,ls.length])}
+  rows.push([],['رقم السؤال','المستوى','نوع التدريب','محور العلاج','العدد الأول','العدد الثاني','الإجابة الصحيحة','عدد المحاولات','صحيح من أول مرة','إجابات خاطئة','سؤال علاجي']);
+  answered.forEach(l=>rows.push([l.index,l.level,typeNames[l.type]||l.type,focusNames[l.focus]||l.focus,l.a,l.b,l.correct,l.attempts,l.firstTry?'نعم':'لا',l.wrong.join(' '),l.remedial]));
+  const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`تقرير-المقارنة-${student}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),600)
+});
+
+function worksheetFocuses(){
+  const ranked=Object.keys(focusNames).map(f=>({f,count:misconceptions[f]||0})).sort((a,b)=>b.count-a.count).filter(x=>x.count>0);
+  return ranked.length?ranked.slice(0,3).map(x=>x.f):['sameTens','onesTrap','reversal'];
+}
+function worksheetInstruction(f){
+  const m={
+    onesTrap:'ابدأ بالعشرات دائمًا، حتى لو كان رقم الآحاد في العدد الأصغر أكبر.',
+    sameTens:'إذا تساوت العشرات، انتقل إلى الآحاد وحدها للمقارنة.',
+    reversal:'حدّد قيمة كل رقم بحسب مكانه: عشرات أم آحاد.',
+    symbolDirection:'حدّد الأكبر أولًا، ثم اجعل فتحة الرمز نحو العدد الأكبر.',
+    equality:'استخدم = فقط إذا تساوت العشرات والآحاد معًا.',
+    close:'استخدم أول منزلة مختلفة أو خط الأعداد عندما يكون العددان متقاربين.',
+    zero:'اقرأ الصفر داخل منزلته؛ ٤٠ تعني ٤ عشرات و٠ آحاد.',
+    clearTens:'قارن رقم العشرات أولًا؛ العشرات الأكثر تعني العدد الأكبر.'
+  };return m[f]||'قارن العشرات أولًا ثم الآحاد.'
+}
+function makeWorksheetPair(f){
+  const tempUsed=used;used=new Set();let pair=generatePair(remedialTypeForFocus(f));used=tempUsed;return pair;
+}
+function createWorksheetHTML(){
+  const focuses=worksheetFocuses();
+  const qs=[];
+  focuses.forEach(f=>{for(let i=0;i<3;i++){const [a,b]=makeWorksheetPair(f);qs.push({a,b,f,ans:relation(a,b)})}});
+  while(qs.length<12){const f=pick(focuses);const [a,b]=makeWorksheetPair(f);qs.push({a,b,f,ans:relation(a,b)})}
+  const skillList=focuses.map(f=>`<li><strong>${focusNames[f]}</strong>: ${worksheetInstruction(f)}</li>`).join('');
+  const questionHTML=qs.map((q,i)=>`<div class="q"><span class="n">${toAr(i+1)}.</span><span class="pair">${toAr(q.a)} <span class="blank">○</span> ${toAr(q.b)}</span><span class="tag">${focusNames[q.f]}</span></div>`).join('');
+  const answerHTML=qs.map((q,i)=>`<div>${toAr(i+1)}) ${toAr(q.a)} ${q.ans} ${toAr(q.b)}</div>`).join('');
+  const date=new Date().toLocaleDateString('ar-EG');
+  return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ورقة علاجية - ${student}</title><style>
+  *{box-sizing:border-box}body{font-family:Arial,"Segoe UI",sans-serif;margin:0;background:#f3f7fb;color:#17324d}.page{width:min(900px,96%);margin:18px auto;background:#fff;padding:28px 34px;border:1px solid #d9e5ef;border-radius:18px}.head{text-align:center;border-bottom:3px solid #2f9e59;padding-bottom:12px}.head h1{margin:0;color:#173f7b}.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px}.skills{background:#fff8e7;border:1px solid #efd99b;border-radius:14px;padding:12px 18px;margin:18px 0;line-height:1.8}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.q{border:2px solid #d8e6f2;border-radius:14px;padding:15px;min-height:84px;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center}.n{font-weight:800}.pair{direction:ltr;text-align:center;font-size:2rem;font-weight:800}.blank{display:inline-grid;place-items:center;width:46px;height:46px;border:2px solid #7d95ab;border-radius:50%;margin:0 10px}.tag{grid-column:1/-1;font-size:.76rem;color:#65798d;text-align:center}.teacher{page-break-before:always}.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:1.2rem}.foot{text-align:center;color:#6b7c8c;font-size:.8rem;margin-top:18px}@media print{body{background:#fff}.page{width:100%;margin:0;border:0;border-radius:0;min-height:100vh}.no-print{display:none!important}}@media(max-width:650px){.grid{grid-template-columns:1fr}.page{padding:18px}.answers{grid-template-columns:1fr 1fr}}</style></head><body>
+  <section class="page"><div class="head"><h1>ورقة عمل علاجية مخصصة</h1><div>المقارنة بين عددين ضمن ٩٩</div><div class="meta"><span>الطالب/الطالبة: <strong>${student}</strong></span><span>المعلّمة: <strong>جمانة عنقاوي</strong></span><span>التاريخ: ${date}</span></div></div>
+  <div class="skills"><strong>مهارات العلاج المستهدفة بناءً على أداء اللعبة:</strong><ul>${skillList}</ul></div>
+  <p><strong>التعليمات:</strong> ضع الرمز المناسب (&gt; أو = أو &lt;) داخل الدائرة. اقرأ العشرات أولًا، ثم الآحاد إذا تساوت العشرات.</p>
+  <div class="grid">${questionHTML}</div>
+  <div class="foot">ورقة مولّدة تلقائيًا بناءً على تقرير أداء الطالب • CC BY-NC-ND • بعض الحقوق محفوظة</div></section>
+  <section class="page teacher"><div class="head"><h1>مفتاح الإجابة للمعلم</h1><div>نسخة خاصة بالطالب/الطالبة: ${student}</div></div><div class="skills"><strong>الأولويات العلاجية:</strong><ol>${focuses.map(f=>`<li>${focusNames[f]} — عدد مرات ظهور الصعوبة في اللعبة: ${toAr(misconceptions[f]||0)}</li>`).join('')}</ol></div><div class="answers">${answerHTML}</div><div class="foot">المعلّمة: جمانة عنقاوي</div></section>
+  </body></html>`;
+}
+$('worksheetBtn').addEventListener('click',()=>{
+  const html=createWorksheetHTML();
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`ورقة-علاجية-${student}.html`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800);$('worksheetStatus').textContent='تم إنشاء ورقة علاجية مخصصة حسب أخطاء الطالب، ومعها مفتاح إجابة للمعلم.';
+});
+$('restartBtn').addEventListener('click',()=>{clearTimers();showScreen('startScreen');$('studentName').value=student});
+</script>
+</body>
+</html>
